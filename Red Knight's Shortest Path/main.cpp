@@ -69,23 +69,35 @@ void printShortestPath(int n, int i_start, int j_start, int i_end, int j_end) {
           movesUL.push_back("UL");
         }
       }
+
+      // checking preconditions
+      if (abs(i_start - i_end) % 2 == 1) {
+        break;
+      } else if (i_start == i_end && abs(j_start - j_end) % 2 == 1) {
+        break;
+      } else if (j_start == j_end && abs(i_start - i_end) <= 2) {
+        break;
+      }
     }
 
-    // printing moves
-    int numMoves = movesUL.size() + movesUR.size() + movesR.size() +
-                   movesLR.size() + movesLL.size() + movesL.size();
-    cout << numMoves << endl;
-    // for (int i = 0; i < numMoves; i++) {
-    //   cout << moves[i] << " ";
-    // }
-    // cout << endl;
-    displayVector(movesUL);
-    displayVector(movesUR);
-    displayVector(movesR);
-    displayVector(movesLR);
-    displayVector(movesLL);
-    displayVector(movesL);
-
+    if (!(i_start == i_end && j_start == j_end)) {
+      cout << "Impossible" << endl;
+    } else {
+      // printing moves
+      int numMoves = movesUL.size() + movesUR.size() + movesR.size() +
+                     movesLR.size() + movesLL.size() + movesL.size();
+      cout << numMoves << endl;
+      // for (int i = 0; i < numMoves; i++) {
+      //   cout << moves[i] << " ";
+      // }
+      // cout << endl;
+      displayVector(movesUL);
+      displayVector(movesUR);
+      displayVector(movesR);
+      displayVector(movesLR);
+      displayVector(movesLL);
+      displayVector(movesL);
+    }
     solved = true;
   }
 }
